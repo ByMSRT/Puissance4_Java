@@ -1,13 +1,16 @@
 package puissance4;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Grille {
 
     public static void main(String[] args) {
         Grille grille = new Grille();
         grille.creationPion();
+        grille.creationGrille();
     }
+
     public String informationGame(String information) {
         System.out.println("Quelle est " + information);
         InputStreamReader io = new InputStreamReader(System.in);
@@ -22,11 +25,49 @@ public class Grille {
         }
     }
 
-    public Pion creationPion() {
-        String user = informationGame("votre nom ?");
-        String position = informationGame("la position de votre nouveau pion ?");
-        Pion newPion = new Pion(user, position, 0);
-        System.out.println(newPion.usernamePion);
-        return newPion;
+    public void creationPion() {
+        for (int numberPlayer = 0; numberPlayer < 2; numberPlayer++) {
+            String user = informationGame("votre nom ?");
+            String position = informationGame("la position de votre nouveau pion ?");
+            Pion newPion = new Pion(user, position, 0);
+            System.out.println(newPion.usernamePion);            
+        }
     }
+
+    public void creationGrille() {
+        String[] horizontalLine = {"", "", "", "", "", "", "", "", ""};
+        String test = "";
+        char letter = 'a';
+        for (int index1 = 0; index1 <= 7; index1++) {
+            if (index1 == 7) {
+                break;
+            }
+            for (int index2 = 1; index2 <= horizontalLine.length; index2++) {
+                if (index1 == 6) {
+                    if (index2 <= 8) {
+                        test += "  " + letter++ + "  ";
+                        continue;
+                    } else {
+                        test += " ";
+                        continue;
+                    }
+                }
+
+                if (index2 == 1) {
+                    test += "|  ";
+                    continue;
+                } else if (index2 == 9) {
+                    test +=  "  |\n";
+                    continue;
+                } else {
+                   test += horizontalLine[index2] +"  |  "; 
+                }
+
+                
+            }
+
+        }
+        System.out.println(test);
+    }
+
 }

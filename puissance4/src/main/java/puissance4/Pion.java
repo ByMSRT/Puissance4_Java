@@ -5,6 +5,7 @@ public class Pion {
     String usernamePion = "";
     String positionVertical = "";
 
+    // Constructeur de Pion
     public Pion(String username, String positionVertical, int positionHorizontal) {
         this.usernamePion = username;
         this.positionVertical = positionVertical;

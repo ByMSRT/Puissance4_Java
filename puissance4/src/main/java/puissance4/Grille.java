@@ -44,6 +44,7 @@ public class Grille {
             }
             for (int index2 = 1; index2 <= horizontalLine.length; index2++) {
                 if (index1 == 6) {
+                    // Ajout de lettre en bas des colonne afin de se repérer
                     if (index2 <= 8) {
                         test += "  " + letter++ + "  ";
                         continue;
@@ -53,9 +54,11 @@ public class Grille {
                     }
                 }
 
+                // Création première ligne d'une colonne
                 if (index2 == 1) {
                     test += "|  ";
                     continue;
+                //  Création de la fin d'une ligne d'une colonne
                 } else if (index2 == 9) {
                     test +=  "  |\n";
                     continue;

@@ -5,89 +5,106 @@ import java.util.Scanner;
 public class Menu {
     
     public static void main(String[] args) {
-        int selected;
-        int play;
-        int rules;
-        do {
-            selected = MenuData();
-            switch(selected) {
+        menu();
+    }
+
+    public static void printMenu(){
+        System.out.println("\n ❌ Bienvenue sur le puissance 4 🟢 ! \n \n" +
+        "1 - 🕹 Jouer 🕹 \n" +
+        "2 - 📝 Regles 📝 \n" +
+        "3 - 👋 Quitter 👋");
+    }
+
+    public static void MenuPlay(){
+
+        int choice = -1;
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n1 - 🆚 Local - 1 vs 1 🆚");
+        System.out.println("2 - 📡 En ligne 📡");
+        System.out.println("3 - ⬅️ Retour ⬅️");
+        System.out.println("4 - 👋 Quitter 👋");
+        choice = scan.nextInt();
+        switch(choice){
+            case 1:
+                System.out.println("\n1 - 🆚 TEST LOCAL 🆚");
+                // Exec Local
+                break;
+            case 2:
+                System.out.println("2 - 📡 TEST ONLINE 📡");
+                // Exec Online
+                break;
+            case 3:
+                printMenu();
+                break;
+            case 4:
+                System.out.println("👋 Fin du programme 👋");
+                System.exit(0);
+            default:
+                System.out.println("\f");
+                System.out.println("🔴 Invalid 🔴 - Réessayer !");
+                MenuPlay();
+                break;
+        }
+        choice = scan.nextInt();
+    };
+
+    public static void MenuRules(){
+
+        int choice = -1;
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Pour commencer une partie de puissance 4, on désigne le premier joueur.\nCelui-­ci met un de ses jetons de couleur dans l’une des colonnes de son choix.\nLe jeton tombe alors en bas de la colonne.\nLe deuxième joueur insère à son tour son jeton, de l’autre couleur dans la colonne de son choix.\nEt ainsi de suite jusqu’à obtenir une rangée de 4 jetons de même couleur.");
+        System.out.println("Pour gagner une partie de puissance 4, il suffit d’être le premier à aligner 4 jetons de sa couleur horizontalement, verticalement et diagonalement.\nSi lors d’une partie, tous les jetons sont joués sans qu’il y est d’alignement de jetons, la partie est déclaré nulle.\n");
+        System.out.println("1 - ⬅️ Retour ⬅️");
+        System.out.println("2 - 👋 Quitter 👋");
+        choice = scan.nextInt();
+        switch(choice){
+            case 1:
+                menu();
+                break;
+            case 2:
+                System.out.println("👋 Fin du programme 👋");
+                System.exit(0);
+            default:
+                System.out.println("\f");
+                System.out.println("🔴 Invalid 🔴 - Réessayer !");
+                MenuRules();
+                break;
+        }
+        choice = scan.nextInt();
+
+    };
+
+    public static void menu() {
+        Scanner scan = new Scanner(System.in);
+        int choice = -1;
+        printMenu();
+        choice = scan.nextInt();
+        while (choice != 3){
+
+            switch(choice) {
                 case 1:
-                    System.out.println("Jouer - Quelle mode choisissez-vous ?");
-                    do {
-                        play = MenuPlay();
-                        switch(play){
-                            case 1:
-                                // Lancement en local
-                                break;
-                            case 2:
-                                // Lancement en ligne
-                                break;
-                        }   
-                    }
-                    while(play > 2);
+                    System.out.println("🕹 Jouer 🕹");
+                    MenuPlay();
                     break;
                 case 2:
-                    System.out.println("Regles");
-                    do {
-                        rules = MenuRules();
-                        switch(rules){
-                            case 1:
-                                MenuData();
-                                break;
-                            case 2:
-                                System.out.println("Quit");
-                                System.exit(0);
-                                break;
-                        }
-                    }
-                    while(rules > 2);
+                    System.out.println("📝 Regles 📝");
+                    MenuRules();
                     break;
-                    
-                case 3:
-                    System.out.println("Quit");
-                    System.exit(0);
-                    break;
-            
+                default:
+                    System.out.println("\f");
+                    System.out.println("🔴 Invalid 🔴 - Réessayer !");
+                    menu();
             }
+
+            choice = scan.nextInt();
         }
-        while(selected > 3);
-    };
-
-    public static int MenuData(){
-
-        int selection; 
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("1 - Jouer");
-        System.out.println("2 - Regles");
-        System.out.println("3 - Quit");
-
-        selection = sc.nextInt();
-        return selection;
-    };
-
-    public static int MenuPlay(){
-
-        int playMode;
-
-        Scanner play = new Scanner(System.in);
-        System.out.println("1 - Local - 1 vs 1");
-        System.out.println("2 - En ligne");
-
-        playMode = play.nextInt();
-        return playMode;
-    };
-
-    public static int MenuRules(){
-
-        int Rules;
-
-        Scanner rules = new Scanner(System.in);
-        System.out.println("EXPLICATION");
-        System.out.println("1 - Retour");
-        System.out.println("2 - Quit");
-
-        Rules = rules.nextInt();
-        return Rules;
-    };
+        System.out.println("\f");
+        System.out.println("👋 Fin du programme 👋");
+        System.exit(0);
+    }
 }
+
+

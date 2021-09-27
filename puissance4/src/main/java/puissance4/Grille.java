@@ -2,13 +2,15 @@ package puissance4;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Grille {
+    private String[] horizontalLine = {"", "", "", "", "", "", "", "", ""};
 
     public static void main(String[] args) {
         Grille grille = new Grille();
-        grille.creationPion();
-        grille.creationGrille();
+        System.out.println(grille.creationGrille());
+        grille.placePion();
     }
 
     public String informationGame(String information) {
@@ -25,27 +27,16 @@ public class Grille {
         }
     }
 
-    public void creationPion() {
-        for (int numberPlayer = 0; numberPlayer < 2; numberPlayer++) {
-            String user = informationGame("votre nom ?");
-            String position = informationGame("la position de votre nouveau pion ?");
-            Pion newPion = new Pion(user, position, 0);
-            System.out.println(newPion.usernamePion);            
-        }
-    }
-
-    public void creationGrille() {
-        String[] horizontalLine = {"", "", "", "", "", "", "", "", ""};
+     
+    public String creationGrille() {
         String test = "";
         char letter = 'a';
-        for (int index1 = 0; index1 <= 7; index1++) {
-            if (index1 == 7) {
-                break;
-            }
-            for (int index2 = 1; index2 <= horizontalLine.length; index2++) {
-                if (index1 == 6) {
+        for (int y = 0; y < 7; y++) {
+            for (int x = 1; x <= horizontalLine.length; x++) {
+                // Création dernière ligne avec les lettres
+                if (y == 6) {
                     // Ajout de lettre en bas des colonne afin de se repérer
-                    if (index2 <= 8) {
+                    if (x <= 8) {
                         test += "  " + letter++ + "  ";
                         continue;
                     } else {
@@ -55,22 +46,43 @@ public class Grille {
                 }
 
                 // Création première ligne d'une colonne
-                if (index2 == 1) {
+                if (x == 1) {
                     test += "|  ";
                     continue;
                 //  Création de la fin d'une ligne d'une colonne
-                } else if (index2 == 9) {
+                } else if (x == 9) {
                     test +=  "  |\n";
                     continue;
                 } else {
-                   test += horizontalLine[index2] +"  |  "; 
-                }
-
-                
+                   test += horizontalLine[x] +"  |  "; 
+                }                
             }
 
         }
-        System.out.println(test);
+        return test;
     }
 
+    public void analyzeString() {
+        String str = creationGrille();
+        for (int index = 0; index < str.length(); index++) {
+            if (index == 1) {
+                System.out.println(str[index+1]);
+            }
+        }
+        Scanner scan = new Scanner(str);
+        String test = scan.nextLine();
+        System.out.println(test);
+        scan.close();
+    }
+
+    public String placePion() {
+        Pion newPion = new Pion("1", "X");
+        Pion newPion1 = new Pion("2", "O");
+
+        System.out.println(newPion.userPion);
+        System.out.println(newPion1.userPion);
+
+
+        return "";
+    }
 }

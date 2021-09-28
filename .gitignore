@@ -1,3 +1,4 @@
 /puissance4/target
 /puissance4/src/main/java/puissance4/Grille.class
 /puissance4/src/main/java/puissance4/Pion.class
+*.class

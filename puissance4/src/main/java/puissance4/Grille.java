@@ -13,7 +13,7 @@ public class Grille {
     public static void main(String[] args) {
         Grille grille = new Grille();
         grille.creationGrille();
-        grille.placePion();
+        grille.nextPion();
         grille.creationGrille();
     }
 
@@ -68,12 +68,25 @@ public class Grille {
         }
     }
 
-    public char[][] placePion() {
-        Pion newPion = new Pion("1", 'X');
-        Pion newPion1 = new Pion("2", 'O');
+    public void nextPion(){
+        
+        int tour = 0;
+
+        do {
+            Pion pionPlayer1 = new Pion("1", 'X');
+            placePion(pionPlayer1);
+            creationGrille();
+            Pion pionPlayer2 = new Pion("2", 'O');
+            placePion(pionPlayer2);
+            creationGrille();
+            tour++;
+        } while (tour < 2);// fonction qui vérifie victoire null ou égalité)
+
+    }
+
+    public char[][] placePion(Pion newPion) {
 
         System.out.println(newPion.userPion);
-        System.out.println(newPion1.userPion);
 
         // newPion.userPion = this.ligneVertical;
         // newPion1.userPion = this.ligneVertical;

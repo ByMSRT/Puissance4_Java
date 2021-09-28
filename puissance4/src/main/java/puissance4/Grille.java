@@ -8,21 +8,22 @@ public class Grille {
     private int ligneVertical;
     private int ligneHorizontal;
     private char[][] horizontalLine;
-    private char letter = 'a';
+    private char letter = '1';
 
     public static void main(String[] args) {
         Grille grille = new Grille();
         grille.creationGrille();
         grille.placePion();
+        grille.creationGrille();
     }
 
     public Grille() {
-        this.ligneHorizontal = 8;
-        this.ligneVertical = 6;
-        this.horizontalLine = new char[ligneHorizontal][ligneVertical];
+        this.ligneHorizontal = 6;
+        this.ligneVertical = 8;
+        this.horizontalLine = new char[ligneVertical][ligneHorizontal];
 
-        for (int x = 0; x < ligneHorizontal; x++) {
-            for (int y = 0; y < ligneVertical; y++) {
+        for (int x = 0; x < ligneVertical; x++) {
+            for (int y = 0; y < ligneHorizontal; y++) {
                 horizontalLine[x][y] = '-';
                 if (x == 7) {
                     horizontalLine[x][y] = letter++;
@@ -33,8 +34,8 @@ public class Grille {
 
 
     public void creationGrille() {
-        for (int x = 0; x < ligneHorizontal; x++) {
-            for (int y = 0; y < ligneVertical; y++) {
+        for (int x = 0; x < ligneVertical; x++) {
+            for (int y = 0; y < ligneHorizontal; y++) {
                 // System.out.print("|" + horizontalLine[x][y]);
                 if (x < 7) {
                     System.out.print("|" + horizontalLine[x][y]);
@@ -67,14 +68,27 @@ public class Grille {
         }
     }
 
-    public String placePion() {
-        Pion newPion = new Pion("1", "X");
-        Pion newPion1 = new Pion("2", "O");
+    public char[][] placePion() {
+        Pion newPion = new Pion("1", 'X');
+        Pion newPion1 = new Pion("2", 'O');
 
         System.out.println(newPion.userPion);
         System.out.println(newPion1.userPion);
 
+        // newPion.userPion = this.ligneVertical;
+        // newPion1.userPion = this.ligneVertical;
 
-        return "";
+        for (int x = ligneVertical-1; x >= 0; x--) {
+            if (x-1 >= 0) {
+                horizontalLine[x-1][newPion.userPion-1] = newPion.signPoint;
+                break;
+            }
+            // if (horizontalLine[x][newPion.userPion] == 'X' || horizontalLine[x][newPion.userPion] == 'O') {
+            //     if (x-1 >= 0) {
+            //         horizontalLine[x-1][newPion.userPion-1] = newPion.signPoint;
+            //     } 
+            // }
+        }
+        return horizontalLine;
     }
 }

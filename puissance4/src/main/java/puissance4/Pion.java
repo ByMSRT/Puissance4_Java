@@ -3,12 +3,12 @@ package puissance4;
 import java.io.*;
 
 public class Pion {
-    String userPion = "";
-    String signPoint = "";
+    int userPion = 0;
+    char signPoint;
 
 
     // Constructeur de Pion
-    public Pion(String username, String signPoint) {
+    public Pion(String username, char signPoint) {
         this.userPion = inputPlayer(username);
         this.signPoint = signPoint;
     } 
@@ -23,16 +23,16 @@ public class Pion {
     //     }
     // }
 
-    public String inputPlayer(String elementOfInput) {
+    public int inputPlayer(String elementOfInput) {
         System.out.println("Joueur " + elementOfInput + " veuillez placer votre pion dans une des colonnes disponibles");
         InputStreamReader streamReader = new InputStreamReader(System.in);
         BufferedReader read = new BufferedReader(streamReader);
         try {
-            String valueOfPoint = read.readLine();
+            int valueOfPoint = Integer.parseInt(read.readLine());
             return valueOfPoint;
         } catch (Exception e) {
             System.err.println("Error is : " + e.getMessage());
-            return "";
+            return 0;
         }
     }
 }

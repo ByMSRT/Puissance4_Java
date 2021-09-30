@@ -36,7 +36,6 @@ public class Grille {
     public void creationGrille() {
         for (int x = 0; x < ligneVertical; x++) {
             for (int y = 0; y < ligneHorizontal; y++) {
-                // System.out.print("|" + horizontalLine[x][y]);
                 if (x < 7) {
                     System.out.print("|" + horizontalLine[x][y]);
                 } else {
@@ -69,7 +68,6 @@ public class Grille {
     }
 
     public void nextPion(){
-        
         int tour = 0;
 
         do {
@@ -85,22 +83,11 @@ public class Grille {
     }
 
     public char[][] placePion(Pion newPion) {
-
-        System.out.println(newPion.userPion);
-
-        // newPion.userPion = this.ligneVertical;
-        // newPion1.userPion = this.ligneVertical;
-
         for (int x = ligneVertical-1; x >= 0; x--) {
             if (x-1 >= 0) {
                 horizontalLine[x-1][newPion.userPion-1] = newPion.signPoint;
                 break;
             }
-            // if (horizontalLine[x][newPion.userPion] == 'X' || horizontalLine[x][newPion.userPion] == 'O') {
-            //     if (x-1 >= 0) {
-            //         horizontalLine[x-1][newPion.userPion-1] = newPion.signPoint;
-            //     } 
-            // }
         }
         return horizontalLine;
     }

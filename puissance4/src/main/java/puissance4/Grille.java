@@ -1,8 +1,7 @@
 package puissance4;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Grille {
     private int ligneVertical;
@@ -18,14 +17,14 @@ public class Grille {
     }
 
     public Grille() {
-        this.ligneHorizontal = 6;
-        this.ligneVertical = 8;
+        this.ligneHorizontal = 8;
+        this.ligneVertical = 7;
         this.horizontalLine = new char[ligneVertical][ligneHorizontal];
 
         for (int x = 0; x < ligneVertical; x++) {
             for (int y = 0; y < ligneHorizontal; y++) {
                 horizontalLine[x][y] = '-';
-                if (x == 7) {
+                if (x == 6) {
                     horizontalLine[x][y] = letter++;
                 }
             }
@@ -36,13 +35,13 @@ public class Grille {
     public void creationGrille() {
         for (int x = 0; x < ligneVertical; x++) {
             for (int y = 0; y < ligneHorizontal; y++) {
-                if (x < 7) {
+                if (x < 6) {
                     System.out.print("|" + horizontalLine[x][y]);
                 } else {
                     System.out.print(" "+ horizontalLine[x][y]);
                 }
             }
-            if (x < 7) {
+            if (x < 6) {
                 System.out.println("|");
             } else {
                 System.out.println("");
@@ -67,28 +66,43 @@ public class Grille {
         }
     }
 
+    //  ----------------------------------- Placement Pion ---------------------------------------- 
     public void nextPion(){
         int tour = 0;
 
         do {
             Pion pionPlayer1 = new Pion("1", 'X');
-            placePion(pionPlayer1);
-            creationGrille();
+            validePlacement(pionPlayer1);
             Pion pionPlayer2 = new Pion("2", 'O');
-            placePion(pionPlayer2);
-            creationGrille();
+            validePlacement(pionPlayer2);
             tour++;
-        } while (tour < 2);// fonction qui vérifie victoire null ou égalité)
-
+        } while (tour < 5); // fonction qui vérifie victoire null ou égalité)
     }
 
-    public char[][] placePion(Pion newPion) {
+    public boolean placePion(Pion newPion) {
+
+        System.out.println(newPion.userPion);
+
         for (int x = ligneVertical-1; x >= 0; x--) {
-            if (x-1 >= 0) {
-                horizontalLine[x-1][newPion.userPion-1] = newPion.signPoint;
+            if (horizontalLine[x][newPion.userPion-1] == '-') {
+                horizontalLine[x][newPion.userPion-1] = newPion.signPoint;
                 break;
             }
+            if (x == 0) {
+                return false;
+            }
+        
         }
-        return horizontalLine;
+        return true;
     }
+
+    public void validePlacement(Pion pion) {
+        if (placePion(pion)) {
+            creationGrille(); 
+        } else {
+            System.out.println("Vous avez place votre pion dans une colonne complete");
+        }
+    }
+
+    // --------------------------- Condition de victoire -------------------------------
 }

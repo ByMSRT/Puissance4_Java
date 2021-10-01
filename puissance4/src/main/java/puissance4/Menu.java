@@ -1,10 +1,13 @@
 package puissance4;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Menu {
-    
-    public static void main(String[] args) {
+    static String text;
+    public static void main(String[] args) throws IOException{
         menu();
     }
 
@@ -15,7 +18,7 @@ public class Menu {
         "3 - 👋 Quitter 👋");
     }
 
-    public static void MenuPlay(){
+    public static void MenuPlay() throws IOException{
 
         int choice = -1;
 
@@ -33,6 +36,8 @@ public class Menu {
             case 2:
                 System.out.println("2 - 📡 TEST ONLINE 📡");
                 // Exec Online
+                /* Communicator.createServ(text); */
+                ServerOrClient();
                 break;
             case 3:
                 printMenu();
@@ -49,7 +54,32 @@ public class Menu {
         choice = scan.nextInt();
     };
 
-    public static void MenuRules(){
+    public static void ServerOrClient() throws IOException {
+        int choice = -1;
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Choisissez : ");
+        System.out.println("\n1 - Server");
+        System.out.println("2 - Client");
+        choice = scan.nextInt();
+        switch (choice) {
+            case 1:
+                Communicator.createServ("");
+                break;
+            case 2:
+                System.out.println("Client - Veuillez rentrer une adresse IP : ");
+                InputStreamReader isr = new InputStreamReader(System.in);
+                BufferedReader br = new BufferedReader(isr);
+                text = br.readLine();
+                Communicator.createServ(text);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public static void MenuRules() throws IOException{
 
         int choice = -1;
 
@@ -77,7 +107,7 @@ public class Menu {
 
     };
 
-    public static void menu() {
+    public static void menu() throws IOException{
         Scanner scan = new Scanner(System.in);
         int choice = -1;
         printMenu();

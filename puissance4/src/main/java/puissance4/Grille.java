@@ -10,7 +10,14 @@ public class Grille {
     private char[][] horizontalLine;
     private char letter = '1';
 
-    public static void main(String[] args) {
+/*     public static void main(String[] args) {
+        Grille grille = new Grille();
+        grille.creationGrille();
+        grille.nextPion();
+        grille.creationGrille();
+    } */
+
+    public static void runGrille() {
         Grille grille = new Grille();
         grille.creationGrille();
         grille.nextPion();

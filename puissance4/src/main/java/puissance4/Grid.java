@@ -58,11 +58,13 @@ public class Grid {
             Token tokenPlayer1 = new Token("1", 'X');
             validePlacement(tokenPlayer1);
             horizontalVictory(tokenPlayer1.signToken);
+            verticalVictory(tokenPlayer1.signToken);
             Token tokenPlayer2 = new Token("2", 'O');
             validePlacement(tokenPlayer2);
             horizontalVictory(tokenPlayer2.signToken);
+            verticalVictory(tokenPlayer2.signToken);
             tour++;
-        } while (tour < 5); // fonction qui vérifie victoire null ou égalité)
+        } while (tour < 100); // fonction qui vérifie victoire null ou égalité)
     }
 
     public boolean placeToken(Token newToken) {
@@ -100,6 +102,18 @@ public class Grid {
                 }
             }
         } 
-        System.out.println("Il y a " + victory + " aligne avec le symbol "+ symbol);
+        System.out.println("Il y a " + victory + " aligne sur l'axe horizontal avec le symbol "+ symbol);
+    }
+
+    public void verticalVictory(char symbol) {
+        int victory = 1;
+        for (int x = 0; x < column; x++) {
+            for (int y = 0; y < line-1; y++) {
+                if (horizontalLine[y][x] == symbol && horizontalLine[y+1][x] == symbol) {
+                    victory++;
+                }
+            }
+        }
+        System.out.println("Il y a " + victory + " aligne sur l'axe vertical avec le symbol "+ symbol);
     }
 }

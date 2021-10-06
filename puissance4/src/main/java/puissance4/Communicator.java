@@ -144,7 +144,7 @@ class Host extends dataNetwork {
 class Client extends dataNetwork {
 
 
-    public void connect(String ipAdress) {
+    public void connect(String ipAdress) throws IOException {
         System.out.println("Connexion en cours à l'hote sur le port : " + PORT);
         socket = SocketChannel.open();
         socket.connect(new InetSocketAddress(ipAdress, PORT));        

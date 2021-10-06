@@ -51,7 +51,7 @@ public class Menu {
                 MenuPlay();
                 break;
         }
-        choice = scan.nextInt();
+        /* choice = scan.nextInt(); */
     };
 
     public static void ServerOrClient() throws IOException {
@@ -103,7 +103,7 @@ public class Menu {
                 MenuRules();
                 break;
         }
-        choice = scan.nextInt();
+        /* choice = scan.nextInt(); */
 
     };
 
@@ -129,7 +129,7 @@ public class Menu {
                     menu();
             }
 
-            choice = scan.nextInt();
+            /* choice = scan.nextInt(); */
         }
         System.out.println("\f");
         System.out.println("👋 Fin du programme 👋");

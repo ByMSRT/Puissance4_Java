@@ -17,43 +17,16 @@ public class Communicator {
     static Host server = null;
     static Client client = null;
     static boolean isHost = false;
-/*     public static void main(String[] args) {
-        String message = "";
 
-        isHost = (args.length == 0);
-        if(args.length > 0) {
-            client = new Client();
-            try {
-                client.connect();
-            } catch (IOException e) {
-                System.out.println("Could not connect to target " + args[0] + " : " + e.getMessage());
-            }
-            message = sendMessage();
-        } else {
-            server = new Host();
-            server.accept();
-        }
-
-        while(!message.equals("Quit")){
-            message = (isHost ? server.read() : client.read());
-            if (message.equals("Quit")) {
-                break;
-            }
-            System.out.println(">> " + message + "\n");
-            message = sendMessage();
-        }
-        System.out.println("Communication terminée");
-
-    } */
-
-    public static void createServ(String ip){
+    public static void createServ(String ip) throws IOException {
         String message = "";
 
         isHost = (ip.length() == 0);
+        System.out.println(isHost);
         if(ip.length() > 0) {
             client = new Client();
             try {
-                client.connect();
+                client.connect(ip);
             } catch (IOException e) {
                 System.out.println("Could not connect to target " + ip + " : " + e.getMessage());
             }
@@ -71,7 +44,9 @@ public class Communicator {
             System.out.println(">> " + message + "\n");
             message = sendMessage();
         }
+        System.out.println("Fermeture");
         System.out.println("Communication terminée");
+        System.exit(0);
     }
 
     public static String getMessageFromConsole() throws IOException {
@@ -103,11 +78,11 @@ public class Communicator {
 
 class dataNetwork {
     protected static final  int BUFFER_LENGTH = 1024;
-    protected static final int PORT = 8000;
+    protected static final int PORT = 4004;
 
     protected SocketChannel socket = null;
 
-    public void close(){
+    public void close() throws NullPointerException {
         try{
             socket.close();
         }
@@ -169,10 +144,10 @@ class Host extends dataNetwork {
 class Client extends dataNetwork {
 
 
-    public void connect() throws IOException{
+    public void connect(String ipAdress) {
         System.out.println("Connexion en cours à l'hote sur le port : " + PORT);
         socket = SocketChannel.open();
-        socket.connect(new InetSocketAddress("localhost", PORT));        
+        socket.connect(new InetSocketAddress(ipAdress, PORT));        
         System.out.println("Connexion établie !");
     }
 }

@@ -31,7 +31,10 @@ public class Menu {
         switch(choice){
             case 1:
                 System.out.println("\n1 - 🆚 TEST LOCAL 🆚");
-                // Exec Local
+                System.out.println("\f");
+                    Grid grille = new Grid();
+                    grille.gridCreation();
+                    grille.nextToken();
                 break;
             case 2:
                 System.out.println("2 - 📡 TEST ONLINE 📡");

@@ -39,7 +39,6 @@ public class Menu {
             case 2:
                 System.out.println("2 - 📡 TEST ONLINE 📡");
                 // Exec Online
-                /* Communicator.createServ(text); */
                 ServerOrClient();
                 break;
             case 3:

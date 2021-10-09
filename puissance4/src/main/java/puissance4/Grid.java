@@ -8,12 +8,6 @@ public class Grid {
     private char[][] horizontalLine;
     private char letter = '1';
 
-    public static void main(String[] args) {
-        Grid grille = new Grid();
-        grille.gridCreation();
-        grille.nextToken();
-    }
-
     public Grid() {
         this.column = 8;
         this.line = 7;
@@ -52,12 +46,23 @@ public class Grid {
     
     public void nextToken(){
 
-        do {
-            Token tokenPlayer1 = new Token("1", 'X');
-            validePlacement(tokenPlayer1);
-            Token tokenPlayer2 = new Token("2", 'O');
-            validePlacement(tokenPlayer2);
-        } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
+        if (RandomPlayer.randomPlayer() == "joueur 1") {
+            do {
+                Token tokenPlayer1 = new Token("1", 'X');
+                validePlacement(tokenPlayer1);
+                Token tokenPlayer2 = new Token("2", 'O');
+                validePlacement(tokenPlayer2);
+            } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
+        } else {
+            do {
+                Token tokenPlayer2 = new Token("2", 'O');
+                validePlacement(tokenPlayer2);
+                Token tokenPlayer1 = new Token("1", 'X');
+                validePlacement(tokenPlayer1);
+            } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
+        }
+
+        
     }
 
     public boolean placeToken(Token newToken) {
@@ -100,25 +105,25 @@ public class Grid {
 
     // --------------------------- Condition de victoire -------------------------------
 
-    public void verificationVictory(char symbol, int y, int x) {
-        // boolean victory = false;
+    public boolean verificationVictory(char symbol, int y, int x) {
+        boolean victory = false;
         if (y == 0) {
-            // victory = true;
+            victory = true;
             System.out.println();
         } else if (horizontalVictory(symbol, y, x) == 4) {
-            // victory = true;
+            victory = true;
             System.out.println("Victoire horizontal du joueur qui a le symbol " + symbol);
         } else if (verticalVictory(symbol, y ,x) == 4) {
-            // victory = true;
+            victory = true;
             System.out.println("Victoire vertical du joueur qui a le symbol " + symbol);
         } else if (diagonalHD(symbol, y, x) == 4) {
-            // victory = true;
+            victory = true;
             System.out.println("Victoire diagonale HD du joueur qui a le symbol " + symbol);
         } else if (diagonalHG(symbol, y, x) == 4) {
-            // victory = true;
+            victory = true;
             System.out.println("Victoire diagonale HG du joueur qui a le symbol " + symbol);
         } 
-        // return victory;
+        return victory;
     }
 
     // -------------------- Victoire horizontal ------------------------

@@ -111,33 +111,33 @@ public class Grid {
         } else if (verticalVictory(symbol, y ,x) == 4) {
             // victory = true;
             System.out.println("Victoire vertical du joueur qui a le symbol " + symbol);
-        } else if (diagonalHD(symbol, y, x) == 4) {
+        } else if (diagonalBD(symbol, y, x) == 4) {
             // victory = true;
-            System.out.println("Victoire diagonale HD du joueur qui a le symbol " + symbol);
-        } else if (diagonalHG(symbol, y, x) == 4) {
+            System.out.println("Victoire diagonale BD du joueur qui a le symbol " + symbol);
+        } else if (diagonalBG(symbol, y, x) == 4) {
             // victory = true;
             System.out.println("Victoire diagonale HG du joueur qui a le symbol " + symbol);
-        } 
+        }
         // return victory;
     }
 
     // -------------------- Victoire horizontal ------------------------
     public int horizontalVictory(char symbol, int y, int x) {
         int victory = 1;
-        int test = 1;
+        int move = 1;
 
-        while (victory <= 4 && x+test <= column-1) {
-            if (horizontalLine[y][x] == symbol && horizontalLine[y][x+test] == symbol) {
+        while (victory <= 4 && x+move <= column-1) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y][x+move] == symbol) {
                 victory++;
-                test++;
+                move++;
             } else {
                 break;
             }
         }
-        while (victory <= 4 && x-test >= 0) {
-            if (horizontalLine[y][x] == symbol && horizontalLine[y][x-test] == symbol) {
+        while (victory <= 4 && x-move >= 0) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y][x-move] == symbol) {
                 victory++;
-                test++;
+                move++;
             } else {
                 break;
             }
@@ -165,37 +165,39 @@ public class Grid {
 
     // ---------------- Victoire diagonale en Haut-Droite -------------------
 
-    public int diagonalHD(char symbol, int y, int x){
+    public int diagonalBD(char symbol, int y, int x){
         int victory = 1;
+        int move = 1;
 
-        while (x < column-1 && y >= 0 && horizontalLine[y][x] == symbol) {
-            x++; 
-            y--;
-            victory++;
-            continue;
+        
+        while (victory <= 4 && x+move <= column-1 && y+move < line-1) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y+move][x+move] == symbol) {
+                move++;
+                victory++;
+            } else {
+                break;
+            }
         }
-
-        while (x >= 0 && y < line-1 && horizontalLine[y][x] == symbol) {
-            x--;
-            y++;
-            victory++;
-            continue;
-        }
-
-        System.out.println("Il y a " + victory + " aligne en diagonale avec le symbol "+ symbol);
+        System.out.println("Il y a " + victory + " aligne en diagonale BD avec le symbol "+ symbol);
         return victory;
     }
 
     // ---------------- Victoire diagonale en Haut-Gauche -------------------
 
-    public int diagonalHG(char symbol, int y, int x) {
+    public int diagonalBG(char symbol, int y, int x) {
         int victory = 1;
-        while (x >= 0 && y >= 0 && horizontalLine[y][x] == symbol) {
-            x--;
-            y--; 
-            victory++;
+        int move = 1;
+        while (victory <= 4 && x-move >= 0 && y+move <= line-1) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y+move][x-move] == symbol) {
+                move++;
+                victory++;
+            } else {
+                break;
+            }
         }
-        System.out.println("Il y a " + victory + " aligne en diagonale avec le symbol "+ symbol);
+        System.out.println("Il y a " + victory + " aligne en diagonale BG avec le symbol "+ symbol);
         return victory;
     }
+
+    
 }

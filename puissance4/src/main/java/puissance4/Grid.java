@@ -54,9 +54,13 @@ public class Grid {
 
         do {
             Token tokenPlayer1 = new Token("1", 'X');
-            validePlacement(tokenPlayer1);
+            if (!validePlacement(tokenPlayer1)) {
+                break;
+            }
             Token tokenPlayer2 = new Token("2", 'O');
-            validePlacement(tokenPlayer2);
+            if (!validePlacement(tokenPlayer2)) {
+                break;
+            }
         } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
     }
 
@@ -64,8 +68,11 @@ public class Grid {
         for (int y = line-1; y >= 0; y--) {
             if (horizontalLine[y][newToken.userToken-1] == '-') {
                 horizontalLine[y][newToken.userToken-1] = newToken.signToken;
-                verificationVictory(newToken.signToken, y, newToken.userToken-1);
+                if (verificationVictory(newToken.signToken, y, newToken.userToken-1)) {
+                    return false;
+                }
                 break;
+                
             } 
             if (y == 0) {
                 return false;
@@ -74,11 +81,12 @@ public class Grid {
         return true;
     }
 
-    public void validePlacement(Token token) {
+    public boolean validePlacement(Token token) {
         if (placeToken(token)) {
             gridCreation(); 
+            return true;
         } else {
-            System.out.println("Vous avez place votre pion dans une colonne complete");
+            return false;
         }
     }
 
@@ -100,29 +108,29 @@ public class Grid {
 
     // --------------------------- Condition de victoire -------------------------------
 
-    public void verificationVictory(char symbol, int y, int x) {
-        // boolean victory = false;
+    public boolean verificationVictory(char symbol, int y, int x) {
+        boolean victory = false;
         if (y == 0) {
-            // victory = true;
+            victory = true;
             System.out.println();
-        } else if (horizontalVictory(symbol, y, x) == 4) {
-            // victory = true;
+        } else if ((horizontalRightVictory(symbol, y, x) + horizontalLeftVictory(symbol, y, x) - 1) == 4) {
+            victory = true;
             System.out.println("Victoire horizontal du joueur qui a le symbol " + symbol);
         } else if (verticalVictory(symbol, y ,x) == 4) {
-            // victory = true;
+            victory = true;
             System.out.println("Victoire vertical du joueur qui a le symbol " + symbol);
-        } else if (diagonalBD(symbol, y, x) == 4) {
-            // victory = true;
+        } else if ((diagonalBD(symbol, y, x) + diagonalHG(symbol, y, x) - 1)== 4) {
+            victory = true;
             System.out.println("Victoire diagonale BD du joueur qui a le symbol " + symbol);
-        } else if (diagonalBG(symbol, y, x) == 4) {
-            // victory = true;
-            System.out.println("Victoire diagonale HG du joueur qui a le symbol " + symbol);
+        } else if ((diagonalBG(symbol, y, x) + diagonalHD(symbol, y, x) - 1) == 4) {
+            victory = true;
+            System.out.println("Victoire diagonale HD du joueur qui a le symbol " + symbol);
         }
-        // return victory;
+        return victory;
     }
 
     // -------------------- Victoire horizontal ------------------------
-    public int horizontalVictory(char symbol, int y, int x) {
+    public int horizontalRightVictory(char symbol, int y, int x) {
         int victory = 1;
         int move = 1;
 
@@ -134,6 +142,11 @@ public class Grid {
                 break;
             }
         }
+        return victory;
+    }
+    public int horizontalLeftVictory(char symbol, int y, int x) {
+        int victory = 1;
+        int move = 1;
         while (victory <= 4 && x-move >= 0) {
             if (horizontalLine[y][x] == symbol && horizontalLine[y][x-move] == symbol) {
                 victory++;
@@ -142,9 +155,8 @@ public class Grid {
                 break;
             }
         }
-
-        System.out.println("Il y a " + victory + " aligne sur l'axe horizontal en partant de la fin avec le symbol "+ symbol);
         return victory;
+        
     }
 
     // -------------------- Victoire vertical ------------------------
@@ -159,18 +171,31 @@ public class Grid {
             y--;
             victory++;
         }
-        System.out.println("Il y a " + victory + " aligne sur l'axe vertical avec le symbol "+ symbol);
         return victory;
     }
 
-    // ---------------- Victoire diagonale en Haut-Droite -------------------
+    // ---------------- Victoire diagonale en Bas-Droite et Haut-Gauche -------------------
 
     public int diagonalBD(char symbol, int y, int x){
         int victory = 1;
         int move = 1;
 
-        
-        while (victory <= 4 && x+move <= column-1 && y+move < line-1) {
+        while (x-move >= 0 && y-move >= 0) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y-move][x-move] == symbol) {
+                move++;
+                victory++;
+            } else {
+                break;
+            }
+        }
+        return victory;
+    }
+
+    public int diagonalHG(char symbol, int y, int x){
+        int victory = 1;
+        int move = 1;
+
+        while (x+move <= column-1 && y+move <= line-1) {
             if (horizontalLine[y][x] == symbol && horizontalLine[y+move][x+move] == symbol) {
                 move++;
                 victory++;
@@ -178,11 +203,10 @@ public class Grid {
                 break;
             }
         }
-        System.out.println("Il y a " + victory + " aligne en diagonale BD avec le symbol "+ symbol);
         return victory;
     }
 
-    // ---------------- Victoire diagonale en Haut-Gauche -------------------
+    // ---------------- Victoire diagonale en Bas-Gauche et Haut-Droite -------------------
 
     public int diagonalBG(char symbol, int y, int x) {
         int victory = 1;
@@ -195,9 +219,23 @@ public class Grid {
                 break;
             }
         }
-        System.out.println("Il y a " + victory + " aligne en diagonale BG avec le symbol "+ symbol);
         return victory;
     }
+
+    public int diagonalHD(char symbol, int y, int x) {
+        int victory = 1;
+        int move = 1;
+        while (victory <= 4 && x+move <= column-1 && y-move >= 0) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y-move][x+move] == symbol) {
+                move++;
+                victory++;
+            } else {
+                break;
+            }
+        }
+        return victory;
+    }
+    
 
     
 }

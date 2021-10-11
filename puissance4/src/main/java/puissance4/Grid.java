@@ -123,14 +123,23 @@ public class Grid {
 
     // -------------------- Victoire horizontal ------------------------
     public int horizontalVictory(char symbol, int y, int x) {
-        int victory = 0;
-        while (x < column-1 && horizontalLine[y][x] == symbol) {
-            x++;
-            victory++;
+        int victory = 1;
+        int test = 1;
+        while (victory <= 4 && x-test >= 0) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y][x-test] == symbol) {
+                victory++;
+                test++;
+            } else {
+                break;
+            }
         }
-        while (x >= 0 && horizontalLine[y][x] == symbol) {
-            x--;
-            victory++;
+        while (victory <= 4 && x+test < column-1) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y][x+test] == symbol) {
+                victory++;
+                test++;
+            } else {
+                break;
+            }
         }
 
         System.out.println("Il y a " + victory + " aligne sur l'axe horizontal en partant de la fin avec le symbol "+ symbol);

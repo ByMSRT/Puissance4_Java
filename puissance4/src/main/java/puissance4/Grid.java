@@ -125,16 +125,17 @@ public class Grid {
     public int horizontalVictory(char symbol, int y, int x) {
         int victory = 1;
         int test = 1;
-        while (victory <= 4 && x-test >= 0) {
-            if (horizontalLine[y][x] == symbol && horizontalLine[y][x-test] == symbol) {
+
+        while (victory <= 4 && x+test <= column-1) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y][x+test] == symbol) {
                 victory++;
                 test++;
             } else {
                 break;
             }
         }
-        while (victory <= 4 && x+test < column-1) {
-            if (horizontalLine[y][x] == symbol && horizontalLine[y][x+test] == symbol) {
+        while (victory <= 4 && x-test >= 0) {
+            if (horizontalLine[y][x] == symbol && horizontalLine[y][x-test] == symbol) {
                 victory++;
                 test++;
             } else {

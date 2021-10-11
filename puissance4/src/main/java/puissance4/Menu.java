@@ -30,14 +30,14 @@ public class Menu {
         choice = scan.nextInt();
         switch(choice){
             case 1:
-                System.out.println("\n1 - 🆚 TEST LOCAL 🆚");
+                System.out.println("\n1 - 🆚 LOCAL 🆚");
                 System.out.println("\f");
                     Grid grille = new Grid();
                     grille.gridCreation();
                     grille.nextToken();
                 break;
             case 2:
-                System.out.println("2 - 📡 TEST ONLINE 📡");
+                System.out.println("2 - 📡 ONLINE 📡");
                 // Exec Online
                 ServerOrClient();
                 break;

@@ -105,25 +105,25 @@ public class Grid {
 
     // --------------------------- Condition de victoire -------------------------------
 
-    public boolean verificationVictory(char symbol, int y, int x) {
-        boolean victory = false;
+    public void verificationVictory(char symbol, int y, int x) {
+        /* boolean victory = false; */
         if (y == 0) {
-            victory = true;
+            /* victory = true; */
             System.out.println();
         } else if (horizontalVictory(symbol, y, x) == 4) {
-            victory = true;
+            /* victory = true; */
             System.out.println("Victoire horizontal du joueur qui a le symbol " + symbol);
         } else if (verticalVictory(symbol, y ,x) == 4) {
-            victory = true;
+            /* victory = true; */
             System.out.println("Victoire vertical du joueur qui a le symbol " + symbol);
         } else if (diagonalHD(symbol, y, x) == 4) {
-            victory = true;
+            /* victory = true; */
             System.out.println("Victoire diagonale HD du joueur qui a le symbol " + symbol);
         } else if (diagonalHG(symbol, y, x) == 4) {
-            victory = true;
+            /* victory = true; */
             System.out.println("Victoire diagonale HG du joueur qui a le symbol " + symbol);
         } 
-        return victory;
+        /* return victory; */
     }
 
     // -------------------- Victoire horizontal ------------------------

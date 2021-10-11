@@ -30,10 +30,13 @@ public class Communicator {
             } catch (IOException e) {
                 System.out.println("Could not connect to target " + ip + " : " + e.getMessage());
             }
-            message = sendMessage();
         } else {
             server = new Host();
             server.accept();
+            /* message = sendMessage(); */
+            Grid grille = new Grid();
+            grille.gridCreation();
+            grille.nextToken();
         }
 
         while(!message.equals("Quit")){
@@ -44,9 +47,12 @@ public class Communicator {
             System.out.println(">> " + message + "\n");
             message = sendMessage();
         }
-        System.out.println("Fermeture");
-        System.out.println("Communication terminée");
-        System.exit(0);
+        System.out.println("Vous avez quitté ! - Retour au menu principale \f");
+        if (isHost) {
+            server.close();
+        } else {
+            client.close();
+        }
     }
 
     public static String getMessageFromConsole() throws IOException {
@@ -116,7 +122,7 @@ class dataNetwork {
             while(buffer.hasRemaining()){
                 socket.write(buffer);
             }
-            System.out.println("Message sent.");
+            System.out.println("\fMessage sent. \f");
         }
         catch(UnsupportedEncodingException e){
             System.err.println("Unsupported encoding ! " + e.getMessage());
@@ -132,7 +138,7 @@ class Host extends dataNetwork {
             ServerSocketChannel ssc = ServerSocketChannel.open();
             ssc.socket().bind(new InetSocketAddress(PORT));
             socket = ssc.accept();
-            System.out.println("Connexion établie !");
+            System.out.println("Connexion établie ! - Vous êtes le joueur 1");
         }
         catch(IOException e){
             System.err.println("Impossible de lancer le serveur" + e.getMessage());
@@ -148,6 +154,6 @@ class Client extends dataNetwork {
         System.out.println("Connexion en cours à l'hote sur le port : " + PORT);
         socket = SocketChannel.open();
         socket.connect(new InetSocketAddress(ipAdress, PORT));        
-        System.out.println("Connexion établie !");
+        System.out.println("Connexion établie ! - Vous êtes le joueur 2");
     }
 }

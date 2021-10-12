@@ -8,12 +8,6 @@ public class Grid {
     private char[][] horizontalLine;
     private char letter = '1';
 
-    public static void main(String[] args) {
-        Grid grille = new Grid();
-        grille.gridCreation();
-        grille.nextToken();
-    }
-
     public Grid() {
         this.column = 8;
         this.line = 7;
@@ -51,17 +45,29 @@ public class Grid {
     //  ----------------------------------- Placement Pion ---------------------------------------- 
     
     public void nextToken(){
-
-        do {
-            Token tokenPlayer1 = new Token("1", 'X');
-            if (!validePlacement(tokenPlayer1)) {
-                break;
-            }
-            Token tokenPlayer2 = new Token("2", 'O');
-            if (!validePlacement(tokenPlayer2)) {
-                break;
-            }
-        } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
+        if (RandomPlayer.randomPlayer() == "joueur 1") {
+            do {
+                Token tokenPlayer1 = new Token("1", 'X');
+                if (!validePlacement(tokenPlayer1)){
+                  break;
+                }
+                Token tokenPlayer2 = new Token("2", 'O');
+                if (!validePlacement(tokenPlayer2)){
+                  break;
+                }
+            } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
+        } else {
+            do {
+                Token tokenPlayer2 = new Token("2", 'O');
+                if (!validePlacement(tokenPlayer2)){
+                  break;
+                }
+                Token tokenPlayer1 = new Token("1", 'X');
+                if (!validePlacement(tokenPlayer1)){
+                  break;
+                }
+            } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
+        }
     }
 
     public boolean placeToken(Token newToken) {
@@ -113,6 +119,7 @@ public class Grid {
         if (y == 0) {
             victory = true;
             System.out.println();
+
         } else if ((horizontalRightVictory(symbol, y, x) + horizontalLeftVictory(symbol, y, x) - 1) == 4) {
             victory = true;
             System.out.println("Victoire horizontal du joueur qui a le symbol " + symbol);

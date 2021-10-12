@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         menu();
     }
 
@@ -15,7 +15,7 @@ public class Menu {
         "3 -  Quitter ");
     }
 
-    public static void MenuPlay(){
+    public static void MenuPlay() throws Exception{
 
         int choice = -1;
 
@@ -54,7 +54,7 @@ public class Menu {
         choice = scan.nextInt();
     };
 
-    public static void MenuRules(){
+    public static void MenuRules() throws Exception{
 
         int choice = -1;
 
@@ -82,7 +82,7 @@ public class Menu {
 
     };
 
-    public static void menu() {
+    public static void menu() throws Exception{
         Scanner scan = new Scanner(System.in);
         int choice = -1;
         printMenu();

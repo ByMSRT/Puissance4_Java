@@ -44,7 +44,7 @@ public class Grid {
 
     //  ----------------------------------- Placement Pion ---------------------------------------- 
     
-    public boolean nextToken(){
+    public boolean nextToken() throws Exception{
         boolean test = true;
         if (RandomPlayer.randomPlayer() == "joueur 1") {
             do {

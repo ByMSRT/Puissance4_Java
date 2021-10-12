@@ -19,7 +19,7 @@ public class Token {
         try {
             int valueOfToken = Integer.parseInt(read.readLine());
             return valueOfToken;
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Error is : " + e.getMessage());
             return 0;
         }

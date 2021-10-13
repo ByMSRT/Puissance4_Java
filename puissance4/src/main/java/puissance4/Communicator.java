@@ -23,6 +23,7 @@ public class Communicator {
 
         isHost = (ip.length() == 0);
         System.out.println(isHost);
+        Grid grille = new Grid();
         if(ip.length() > 0) {
             client = new Client();
             try {
@@ -33,10 +34,10 @@ public class Communicator {
         } else {
             server = new Host();
             server.accept();
-            /* message = sendMessage(); */
-            Grid grille = new Grid();
-            grille.gridCreation();
-            grille.nextToken();
+            message = sendMessage();
+            /* Grid grille = new Grid(); */
+            
+            
         }
 
         while(!message.equals("Quit")){
@@ -45,6 +46,8 @@ public class Communicator {
                 break;
             }
             System.out.println(">> " + message + "\n");
+            /* grille.gridCreation(); */
+            grille.nextToken();
             message = sendMessage();
         }
         System.out.println("Vous avez quitté ! - Retour au menu principale \f");

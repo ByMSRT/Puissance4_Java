@@ -114,7 +114,6 @@ public class Grid {
                 count++;
             }
         }   
-        System.out.println(count);
         if (count < 7) {
             return false;
         } else {

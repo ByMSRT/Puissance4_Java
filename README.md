@@ -28,7 +28,7 @@ Pour le lancement du programme, mettons-nous dans le dossier ``puissance4/src/ma
 
 - ``App.java`` : Fichier permettant le lancement du projet JavaFX.
 - ``Communicator.java``: Fichier permettant la mise en relation entre le serveur et le client. 
-- ``Grid.java``: Création de la grille de jeu + algorithme permettant de jouer.
+- ``Grid.java``: Fichier permettant la création de la grille de jeu + algorithme permettant de jouer.
 - ``Token.java``: Fichier permettant la création des pions.
 - ``RandomPlayer``: Fichier permettant la désignation alétoire du premier joueur.
 - ``Menu.java``: Fichier regroupant les différents menus du jeu.

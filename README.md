@@ -32,3 +32,8 @@ Pour le lancement du programme, mettons-nous dans le dossier ``puissance4/src/ma
 - ``Token.java``: Fichier permettant la création des pions.
 - ``RandomPlayer``: Fichier permettant la désignation alétoire du premier joueur.
 - ``Menu.java``: Fichier regroupant les différents menus du jeu.
+
+# ❌ Difficulté rencontré
+- ``Mise en relation de la partie 1 à la partie 2 du TP `` 
+- `` Création de la grille en interface graphique``
+- ``Mise en relation du jeu puissance4 à l'interface``

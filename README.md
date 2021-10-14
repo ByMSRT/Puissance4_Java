@@ -36,4 +36,4 @@ Pour le lancement du programme, mettons-nous dans le dossier ``puissance4/src/ma
 # ❌ Difficulté rencontré
 - ``Mise en relation de la partie 1 à la partie 2 du TP `` 
 - `` Création de la grille en interface graphique``
-- ``Mise en relation du jeu puissance4 à l'interface``
+- ``Mise en relation du jeu puissance4 à l'interface graphique``

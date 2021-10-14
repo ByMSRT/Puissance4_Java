@@ -92,7 +92,7 @@ public class Grid {
                 
             } 
             if (y == 0) {
-                return false;
+                break;
             }
         }
         return true;
@@ -126,10 +126,7 @@ public class Grid {
 
     public boolean verificationVictory(char symbol, int y, int x) {
         boolean victory = false;
-        if (y == 0) {
-            victory = true;
-            System.out.println();
-        } else if ((horizontalRightVictory(symbol, y, x) + horizontalLeftVictory(symbol, y, x) - 1) == 4) {
+        if ((horizontalRightVictory(symbol, y, x) + horizontalLeftVictory(symbol, y, x) - 1) == 4) {
             victory = true;
             System.out.println("Victoire horizontal du joueur qui a le symbol " + symbol);
         } else if (verticalVictory(symbol, y ,x) == 4) {

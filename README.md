@@ -37,3 +37,9 @@ Pour le lancement du programme, mettons-nous dans le dossier ``puissance4/src/ma
 - ``Mise en relation de la partie 1 à la partie 2 du TP `` 
 - `` Création de la grille en interface graphique``
 - ``Mise en relation du jeu puissance4 à l'interface graphique``
+
+# Retrouver les différentes étapes :
+
+- ``Etape 1 : Code présent dans la branche main``
+- ``Etape 2 : Code présent dans la branche CreateServer``
+- ``Etape 3 : Code présent dans la branche JavaFX``

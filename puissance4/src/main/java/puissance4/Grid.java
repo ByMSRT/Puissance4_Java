@@ -60,7 +60,6 @@ public class Grid {
                     gridCreation();
                     return false;
                 }
-                // gridCreation();
             } while (!placeInGrid()); // fonction qui vérifie si il reste de la place dans la grille.
         } else {
             do {
@@ -92,7 +91,8 @@ public class Grid {
                 
             } 
             if (y == 0) {
-                return false;
+                System.out.println("Vous avez place un pion dans une colonne pleine, c'est au joueur suivant de jouer !");
+                break;
             }
         }
         return true;
@@ -100,7 +100,6 @@ public class Grid {
 
     public boolean validePlacement(Token token) {
         if (placeToken(token)) {
-            // gridCreation(); 
             return true;
         } else {
             return false;
@@ -127,10 +126,7 @@ public class Grid {
 
     public boolean verificationVictory(char symbol, int y, int x) {
         boolean victory = false;
-        if (y == 0) {
-            victory = true;
-            System.out.println();
-        } else if ((horizontalRightVictory(symbol, y, x) + horizontalLeftVictory(symbol, y, x) - 1) == 4) {
+        if ((horizontalRightVictory(symbol, y, x) + horizontalLeftVictory(symbol, y, x) - 1) == 4) {
             victory = true;
             System.out.println("Victoire horizontal du joueur qui a le symbol " + symbol);
         } else if (verticalVictory(symbol, y ,x) == 4) {
@@ -252,7 +248,4 @@ public class Grid {
         }
         return victory;
     }
-    
-
-    
 }

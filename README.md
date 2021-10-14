@@ -42,4 +42,4 @@ Pour le lancement du programme, mettons-nous dans le dossier ``puissance4/src/ma
 
 - ``Etape 1 : Code présent dans la branche main``
 - ``Etape 2 : Code présent dans la branche CreateServer``
-- ``Etape 3 : Code présent dans la branche JavaFX``
+- ``Etape 3 : Code présent dans le tag 'Step-3'``
